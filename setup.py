@@ -22,7 +22,7 @@ setuptools.setup(name='photo_grid',
                                    # data processing
                                    'h5py', 'pyshp',
                                    # math, models
-                                   'sklearn', 'scipy', 'matplotlib',
+                                   'scikit-learn', 'scipy', 'matplotlib',
                                    # image processing
                                    'image', 'opencv-python',
                                    'rasterio',
