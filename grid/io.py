@@ -211,10 +211,11 @@ def saveDT(grid, path, prefix="GRID", simple=True):
                 (img[:, :, ch1Sub] + img[:, :, ch2Sub] + 1e-8),
         "CIRE": (img[:, :, ch1Sub] - img[:, :, ch2Sub]) - 1 + 1e-8,
         "DVI": img[:, :, ch1Sub] - img[:, :, ch2Sub] + 1e-8,
+        "PSRI": (img[:, :, 0] - img[:, :, 1]) / img[:, :, ch2Sub] + 1e-8,
         #RGB based indices        
         "NGRDI": (img[:, :, 1] - img[:, :, 0]) /
                 (img[:, :, 1] + img[:, :, 0] + 1e-8),
-        "VARI": (img[:, :, 1] - img[:, :, 0]) / (img[:, :, 1] + img[:, :, 0] - img[:, :, 2])
+        "VARI": (img[:, :, 1] - img[:, :, 0]) / (img[:, :, 1] + img[:, :, 0] - img[:, :, 2] + 1e-8)
     })
 
     # channel values
