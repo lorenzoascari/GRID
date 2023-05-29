@@ -214,7 +214,7 @@ def saveDT(grid, path, prefix="GRID", simple=True):
         #RGB based indices        
         "NGRDI": (img[:, :, 1] - img[:, :, 0]) /
                 (img[:, :, 1] + img[:, :, 0] + 1e-8),
-        "VARI": (img[:, :, 1] - img[:, :, 0] / (img[:, :, 1] + img[:, :, 0] - img[:, :, 2])
+        "VARI": (img[:, :, 1] - img[:, :, 0]) / (img[:, :, 1] + img[:, :, 0] - img[:, :, 2])
     })
 
     # channel values
