@@ -202,18 +202,18 @@ def saveDT(grid, path, prefix="GRID", simple=True):
                 (img[:, :, ch1Sub] + img[:, :, 0] + img[:, :, 1] + 1e-8),
         "RVI": img[:, :, ch1Sub] / (img[:, :, 0] + 1e-8),
         "GRVI": img[:, :, ch1Sub] / (img[:, :, 1] + 1e-8),
-        "TVI": 0.5 * (120 * (img[:, :, ch1Sub] - img[:, :, 1]) - 200  * (img[:, :, 0] - img[:, :, 1])) + 1e-8
+        "TVI": 0.5 * (120 * (img[:, :, ch1Sub] - img[:, :, 1]) - 200  * (img[:, :, 0] - img[:, :, 1])) + 1e-8,
         "CVI": (img[:, :, ch1Sub] - img[:, :, 0]) /
-               (img[:, :, 0] ** 2 + 1e-8)
-        "CIG": (img[:, :, ch1Sub] - img[:, :, 1]) - 1 + 1e-8
+               (img[:, :, 0] ** 2 + 1e-8),
+        "CIG": (img[:, :, ch1Sub] - img[:, :, 1]) - 1 + 1e-8,
         #RE indices
         "NDRE": (img[:, :, ch1Sub] - img[:, :, ch2Sub]) /
                 (img[:, :, ch1Sub] + img[:, :, ch2Sub] + 1e-8),
-        "CIRE": (img[:, :, ch1Sub] - img[:, :, ch2Sub]) - 1 + 1e-8
-        "DVI": img[:, :, ch1Sub] - img[:, :, ch2Sub] + 1e-8
+        "CIRE": (img[:, :, ch1Sub] - img[:, :, ch2Sub]) - 1 + 1e-8,
+        "DVI": img[:, :, ch1Sub] - img[:, :, ch2Sub] + 1e-8,
         #RGB based indices        
         "NGRDI": (img[:, :, 1] - img[:, :, 0]) /
-                (img[:, :, 1] + img[:, :, 0] + 1e-8)
+                (img[:, :, 1] + img[:, :, 0] + 1e-8),
         "VARI": (img[:, :, 1] - img[:, :, 0] / (img[:, :, 1] + img[:, :, 0] - img[:, :, 2])
     })
 
