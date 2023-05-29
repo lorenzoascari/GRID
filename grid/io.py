@@ -185,14 +185,15 @@ def saveDT(grid, path, prefix="GRID", simple=True):
 
     # grab info from GRID obj
     img = grid.imgs.get("crop").copy().astype(np.int)
-    ch1Sub = 1 if img.shape[2] == 3 else 3  # replace NIR with Gr if it's RGB
-
+    ch1Sub = 1 if img.shape[2] == 3 else ch1Sub = 2 if img.shape[2] == 4 else ch1Sub = 3  # replace NIR with Gr if it's RGB
+    ch2Sub = 1 if img.shape[2] == 3 else ch1Sub = 3 if img.shape[2] == 4 else ch1Sub = 4  # replace RE with Gr if it's RGB
     # intialize dataframe
     df = pd.DataFrame(columns=['var', 'row', 'col',
                                'area_all', 'area_veg'])
 
     # calculate index imgs
     dicIdx = dict({
+        #NIR based indices
         "NDVI": (img[:, :, ch1Sub] - img[:, :, 0]) /
                 (img[:, :, ch1Sub] + img[:, :, 0] + 1e-8),
         "GNDVI": (img[:, :, ch1Sub] - img[:, :, 1]) /
@@ -201,8 +202,19 @@ def saveDT(grid, path, prefix="GRID", simple=True):
                 (img[:, :, ch1Sub] + img[:, :, 0] + img[:, :, 1] + 1e-8),
         "RVI": img[:, :, ch1Sub] / (img[:, :, 0] + 1e-8),
         "GRVI": img[:, :, ch1Sub] / (img[:, :, 1] + 1e-8),
-        "NDGI": (img[:, :, 1] - img[:, :, 0]) /
+        "TVI": 0.5 * (120 * (img[:, :, ch1Sub] - img[:, :, 1]) - 200  * (img[:, :, 0] - img[:, :, 1])) + 1e-8
+        "CVI": (img[:, :, ch1Sub] - img[:, :, 0]) /
+               (img[:, :, 0] ** 2 + 1e-8)
+        "CIG": (img[:, :, ch1Sub] - img[:, :, 1]) - 1 + 1e-8
+        #RE indices
+        "NDRE": (img[:, :, ch1Sub] - img[:, :, ch2Sub]) /
+                (img[:, :, ch1Sub] + img[:, :, ch2Sub] + 1e-8),
+        "CIRE": (img[:, :, ch1Sub] - img[:, :, ch2Sub]) - 1 + 1e-8
+        "DVI": img[:, :, ch1Sub] - img[:, :, ch2Sub] + 1e-8
+        #RGB based indices        
+        "NGRDI": (img[:, :, 1] - img[:, :, 0]) /
                 (img[:, :, 1] + img[:, :, 0] + 1e-8)
+        "VARI": (img[:, :, 1] - img[:, :, 0] / (img[:, :, 1] + img[:, :, 0] - img[:, :, 2])
     })
 
     # channel values
