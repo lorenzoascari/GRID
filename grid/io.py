@@ -185,8 +185,8 @@ def saveDT(grid, path, prefix="GRID", simple=True):
 
     # grab info from GRID obj
     img = grid.imgs.get("crop").copy().astype(np.int)
-    ch1Sub = 1 if img.shape[2] == 3 else ch1Sub = 2 if img.shape[2] == 4 else ch1Sub = 3  # replace NIR with Gr if it's RGB
-    ch2Sub = 1 if img.shape[2] == 3 else ch2Sub = 3 if img.shape[2] == 4 else ch2Sub = 4  # replace RE with Gr if it's RGB
+    ch1Sub = 1 if img.shape[2] == 3 else 2 if img.shape[2] == 4 else 3  # replace NIR with Gr if it's RGB
+    ch2Sub = 1 if img.shape[2] == 3 else 3 if img.shape[2] == 4 else 4  # replace RE with Gr if it's RGB
     # intialize dataframe
     df = pd.DataFrame(columns=['var', 'row', 'col',
                                'area_all', 'area_veg'])
