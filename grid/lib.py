@@ -98,7 +98,7 @@ def binarizeSmImg(image, cutoff=0.5):
     imgOut[image > cutoff] = 1
     imgOut[image <= cutoff] = 0
 
-    return imgOut.astype(numpy.int_)
+    return imgOut.astype(int)
 
 
 def find_angle(v1, v2):
@@ -238,7 +238,7 @@ def getRank(array):
     [1,3,6,2,4] -> [4,2,0,3,1]
     """
     sort = np.array(array).argsort()
-    rank = np.zeros(len(sort), dtype=numpy.int_)
+    rank = np.zeros(len(sort), dtype=int)
     rank[sort] = np.flip(np.arange(len(array)), axis=0)
     return rank
 
@@ -266,7 +266,7 @@ def rotateNdArray(img, angle):
         imgP = np.pad(imgTemp, [sizePad, sizePad], 'constant')
 
         # rotate
-        pivot = (np.array(imgP.shape[:2])/2).astype(numpy.int_).tolist()
+        pivot = (np.array(imgP.shape[:2])/2).astype(int).tolist()
         print("testse")
         matRot = cv2.getRotationMatrix2D(pivot, -angle, 1.0)
         imgR = cv2.warpAffine(
@@ -304,9 +304,9 @@ def rotateBinNdArray(img, angle):
     ver_cv_num = int(ver_cv.replace(".", "")[:3])
     is_old_cv = ver_cv_num < 452
     if is_old_cv:
-        pivot = tuple((np.array(imgP.shape[:2])/2).astype(numpy.int_))
+        pivot = tuple((np.array(imgP.shape[:2])/2).astype(int))
     else:
-        pivot = (np.array(imgP.shape[:2])/2).astype(numpy.int_).tolist()
+        pivot = (np.array(imgP.shape[:2])/2).astype(int).tolist()
     # rotate images
     matRot = cv2.getRotationMatrix2D(pivot, -angle, 1.0)
     imgR = cv2.warpAffine(imgP, matRot, imgP.shape,
