@@ -98,7 +98,7 @@ def binarizeSmImg(image, cutoff=0.5):
     imgOut[image > cutoff] = 1
     imgOut[image <= cutoff] = 0
 
-    return imgOut.astype(np.int)
+    return imgOut.astype(numpy.int_)
 
 
 def find_angle(v1, v2):
