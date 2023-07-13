@@ -253,7 +253,7 @@ class Field():
         df = df.loc[idx_keep,:]
         return df
     def get_index(self, ch_1, ch_2=-1, ch_3=-1, isSingle=False, isRatio=False, isContrast=False, isThree=False, name_index="index"):
-        img_raw = self.img_raw.copy().astype(np.int)
+        img_raw = self.img_raw.copy().astype(numpy.int_)
         if img_raw.shape[2]==3 and ch_1==3:
             ch_1 = 1
         if isSingle:
@@ -294,7 +294,7 @@ class Field():
         # get cluster
         cluster = 0
         for i in self.ls_bin:
-            img_index = ((np.isin(self.img_k, i))*1).astype(np.int)
+            img_index = ((np.isin(self.img_k, i))*1).astype(numpy.int_)
             df = pd.DataFrame(columns=['var', 'index'])
             for row in range(self.nrow):
                 for col in range(self.ncol):
