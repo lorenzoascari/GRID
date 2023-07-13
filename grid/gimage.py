@@ -218,7 +218,7 @@ class GImage():
             except Exception:
                 clusterSelected = []
             self.set(key='binOrg', value=(
-                (np.isin(self.get('kmean'), clusterSelected))*1).astype(numpy.int_))
+                (np.isin(self.get('kmean'), clusterSelected))*1).astype(int))
             self.set(key='binTemp', value=self.get('binOrg').copy())
             self.set(key='binSm', value=self.get('binOrg').copy())
             # udpate parameters
@@ -303,7 +303,7 @@ class GImage():
             rank = np.flip(np.argsort(ratioK), axis=0)
         else:
             for i in range(k):
-                imgB = (np.isin(self.get('kmean'), i)*1).astype(numpy.int_)
+                imgB = (np.isin(self.get('kmean'), i)*1).astype(int)
                 sigs = imgB.mean(axis=0)
                 sigsF = getFourierTransform(sigs)
                 scMaxF = round((max(sigsF)/sigsF.mean())/100, 4)  # [0, 1]
