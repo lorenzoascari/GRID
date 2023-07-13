@@ -184,7 +184,7 @@ def saveDT(grid, path, prefix="GRID", simple=True):
     lsK = grid.imgs.paramKMs["lsSelect"]
 
     # grab info from GRID obj
-    img = grid.imgs.get("crop").copy().astype(numpy.int_)
+    img = grid.imgs.get("crop").copy().astype(int)
     ch1Sub = 1 if img.shape[2] == 3 else 2 if img.shape[2] == 4 else 3  # replace NIR with Gr if it's RGB
     ch2Sub = 1 if img.shape[2] == 3 else 3 if img.shape[2] == 4 else 4  # replace RE with Gr if it's RGB
     # intialize dataframe
